@@ -1,6 +1,6 @@
 import React from "react"
 import "./BlogHome.css"
-
+import { BACKEND_URL } from "../../../../customHooks/helper"
 import { useQuery } from "@apollo/client"
 import BlogCard from "./BlogCard"
 import { BLOGS } from "../../../../utils/Queries"
@@ -25,7 +25,7 @@ const AllBlog = () => {
               blog={{
                 title: `${blog.attributes.title}`,
                 para: `${blog.attributes.paragraph}`,
-                cover: `http://localhost:1337${blog.attributes.Cover.data.attributes.url}`,
+                cover: `${BACKEND_URL}${blog.attributes.Cover.data.attributes.url}`,
                 rating: `${blog.attributes.rating}`,
                 date:`${blog.attributes.createdAt}`,
                 id: `${blog.id}`,

@@ -23,7 +23,7 @@ const Longterms = () => {
                 info={{
                   title: `${Package.attributes.title}`,
                   Category: "Long Term Slow Travel",
-                  imageSource: `http://localhost:1337${Package.attributes.preview_image.data.attributes.url}`,
+                  imageSource: `${BACKEND_URL}${Package.attributes.preview_image.data.attributes.url}`,
                   City: `${Package.attributes.location.data.attributes.City}`,
                   neighbourhood: `${Package.attributes.Neighbourhood}`,
                   street: `${Package.attributes.Street}`,

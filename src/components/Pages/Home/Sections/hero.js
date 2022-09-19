@@ -3,6 +3,7 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useQuery } from "@apollo/client";
+import { BACKEND_URL } from "../../../../customHooks/helper";
 import React, { useEffect } from "react";
 import { HeroVideo, HeroSections} from "./HeroElements";
 import { HERO } from "../../../../utils/Queries";
@@ -26,7 +27,7 @@ const HeroSection = () => {
 	{data.herovideos.data.map((herovideo,id) => {
 	return (
 		<HeroSections>
-			<HeroVideo key={id} type="video/mp4" src={`http://localhost:1337${herovideo.attributes.hero.data.attributes.url}`} autoPlay muted loop />
+			<HeroVideo key={id} type="video/mp4" src={`${BACKEND_URL}${herovideo.attributes.hero.data.attributes.url}`} autoPlay muted loop />
 		</HeroSections>
 	);
 })}

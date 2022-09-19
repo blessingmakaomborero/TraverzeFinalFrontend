@@ -9,6 +9,7 @@ import Card from "../../../../components/card/Card";
 //DEPS
 import { SwiperSlide } from "swiper/react";
 import { useQuery, gql } from "@apollo/client";
+import { BACKEND_URL } from "../../../../customHooks/helper";
 
 const CARD_DATA = gql`
   query GET_CARDS {
@@ -87,7 +88,7 @@ const Section_3 = () => {
                     info={{
                       title: `${Package.attributes.title}`,
                       Category: "Holiday trip",
-                      imageSource: `http://localhost:1337${Package.attributes.preview_image.data.attributes.url}`,
+                      imageSource: `${BACKEND_URL}${Package.attributes.preview_image.data.attributes.url}`,
                       City: `${Package.attributes.location.data.attributes.City}`,
                       neighbourhood: `${Package.attributes.Neighbourhood}`,
                       street: `${Package.attributes.Street}`,

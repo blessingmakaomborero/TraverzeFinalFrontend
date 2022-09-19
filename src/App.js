@@ -5,7 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Home from "./components/Pages/Home/Home";
 import Flights_booking from "./components/Pages/Flights_estimates/Flights_estimates";
 import About from "./components/Pages/About/About";
-
+import { BACKEND_URL } from "./customHooks/helper";
 import Travel_updates from "./components/Pages/Travel-Updates/Travel_updates";
 import Holiday_Packages from "./components/Pages/Holiday_Packages/Holiday_packages";
 import Hotel from "./components/Pages/Holiday_Packages/hotel/Hotel";
@@ -14,7 +14,6 @@ import BlogSingle from "./components/Pages/Travel-Updates/Blog/blog-single-page/
 import SingleService from "./components/services/servicedetails";
 import ContactUsPage from "./components/forms/ContactUsPage";
 import SupportEngine from "./components/Pages/Home/support_chat/SupportEngine";
-import { BACKEND_URL } from "./customHooks/helper";
 
  
 const client = new ApolloClient({

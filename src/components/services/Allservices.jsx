@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "./Slider.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import { BACKEND_URL } from "../../customHooks/helper";
 import "./rotate.scss";
 import styled from "styled-components";
 import ServiceCard from "./servicescard";
@@ -69,7 +69,7 @@ const Allservices = () => {
                 service={{
                   title: `${service.attributes.title}`,
                   subTitle: `${service.attributes.subTitle}`,
-                Icon: `http://localhost:1337${service.attributes.Icon.data.attributes.url}`,
+                Icon: `${BACKEND_URL}${service.attributes.Icon.data.attributes.url}`,
                   id: `${service.id}`,
                 }}
               />

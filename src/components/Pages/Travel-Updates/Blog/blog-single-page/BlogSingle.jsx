@@ -5,6 +5,7 @@ import Navbar from "../../../../navbar/Navbar";
 import HeadTitle from "../../../../navbar/HeadTitle/HeadTitle";
 import { useParams } from "react-router-dom";
 import { BLOG } from "../../../../../utils/Queries";
+import { BACKEND_URL } from "../../../../../customHooks/helper";
 import { useQuery } from "@apollo/client";
 import "./blogsingle.css";
 import "../BlogHome.css";
@@ -38,7 +39,7 @@ const BlogSingle = () => {
               <div className="main-content">
                 <div className="imagpost">
                   <img
-                    src={`http://localhost:1337${Cover.data.attributes.url}`}
+                    src={`${BACKEND_URL}${Cover.data.attributes.url}`}
                     alt=""
                   />
                 </div>

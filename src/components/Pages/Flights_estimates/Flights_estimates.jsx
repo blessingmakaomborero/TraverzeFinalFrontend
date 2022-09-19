@@ -1,7 +1,7 @@
 import Navbar from "../../navbar/Navbar";
 import styles from "./Flights_estimates.module.scss";
 import './header.css'
-
+import { BACKEND_URL } from "../../../customHooks/helper";
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Footer from '../../Pages/Home/Sections/Footer'
@@ -72,7 +72,7 @@ const Flights_booking = (props) => {
                 To: `${flight.attributes.To}`,
                 planename: `${flight.attributes.planename}`,
                 From: `${flight.attributes.From}`,
-                planeimg: `http://localhost:1337${flight.attributes.planeImg.data.attributes.url}`,
+                planeimg: `${BACKEND_URL}${flight.attributes.planeImg.data.attributes.url}`,
                 cityA: `${flight.attributes.cityA}`,
                 cityB:`${flight.attributes.cityB}`,
                 price:`${flight.attributes.price}`,

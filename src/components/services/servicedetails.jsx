@@ -5,6 +5,7 @@ import HeadTitle from "../navbar/HeadTitle/HeadTitle";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import "./servicesingle.css";
+import { BACKEND_URL } from "../../customHooks/helper";
 import { SERVICE } from "../../utils/Queries";
 import Contactus from "../forms/contact/contactform";
 
@@ -36,7 +37,7 @@ const SingleService = () => {
               <div className="main-content">
                 <div className="imagpost">
                   <img
-                    src={`http://localhost:1337${image.data.attributes.url}`}
+                    src={`${BACKEND_URL}${image.data.attributes.url}`}
                     alt=""
                   />
                 </div>

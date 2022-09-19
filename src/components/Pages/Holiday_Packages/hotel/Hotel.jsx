@@ -2,7 +2,7 @@ import "./hotel.css";
 import Navbar from "../../../../components/navbar/Navbar";
 import ShowAndHide from "./showadd";
 import MailList from "../mailList/MailList";
-import { BACKEND_URL } from "./helper";
+import { BACKEND_URL } from "../../../../customHooks/helper";
 import { useQuery } from "@apollo/client";
 import { PACKAGE } from "../../../../utils/Queries";
 import CustomizedDialogs from "../../../forms/dialog";

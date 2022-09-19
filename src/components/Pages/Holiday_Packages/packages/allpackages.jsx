@@ -23,7 +23,7 @@ const Allpackages = () => {
                 info={{
                   title: `${Package.attributes.title}`,
                   Category: "All Packages",
-                  imageSource: `http://localhost:1337${Package.attributes.preview_image.data.attributes.url}`,
+                  imageSource: `${BACKEND_URL}${Package.attributes.preview_image.data.attributes.url}`,
                   City: `${Package.attributes.location.data.attributes.City}`,
                   neighbourhood: `${Package.attributes.Neighbourhood}`,
                   street: `${Package.attributes.Street}`,
