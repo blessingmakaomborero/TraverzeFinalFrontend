@@ -14,10 +14,11 @@ import BlogSingle from "./components/Pages/Travel-Updates/Blog/blog-single-page/
 import SingleService from "./components/services/servicedetails";
 import ContactUsPage from "./components/forms/ContactUsPage";
 import SupportEngine from "./components/Pages/Home/support_chat/SupportEngine";
+import { BACKEND_URL } from "./customHooks/helper";
 
  
 const client = new ApolloClient({
-  uri: "http://localhost:1337/graphql",
+  uri: `${BACKEND_URL}/graphql`,
   cache: new InMemoryCache(),
 });
 
