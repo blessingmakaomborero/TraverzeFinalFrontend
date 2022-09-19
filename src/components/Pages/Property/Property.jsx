@@ -1,6 +1,7 @@
 import Navbar from "../../navbar/Navbar";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+import { BACKEND_URL } from "../../../customHooks/helper";
 import { ID_CARD } from "../../../utils/Queries";
 import Card from "../../card/Card";
 import styles from "./Property.module.scss";

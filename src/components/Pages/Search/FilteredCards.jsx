@@ -2,7 +2,7 @@ import Card from "../../card/Card";
 import styles from "./FilteredCards.module.scss";
 import { useContext } from "react";
 import SearchContext from "./SearchContext";
-
+import { BACKEND_URL } from "../../../customHooks/helper";
 const checkHouseCategory = (house) => {
   const houseData = house.attributes.categories.data;
   if (houseData.length === 2) return "Buy / Rent";

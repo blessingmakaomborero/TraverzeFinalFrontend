@@ -26,36 +26,6 @@ import Holidays from "./packages/holidaypackage";
 const Holiday_Packages = ({type}) => {
 
 
-  const [destination, setDestination] = useState("");
-  const [openDate, setOpenDate] = useState(false);
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
-  const [openOptions, setOpenOptions] = useState(false);
-  const [options, setOptions] = useState({
-    adult: 1,
-    children: 0,
-    room: 1,
-  });
-
-  const navigate = useNavigate();
-
-  const handleOption = (name, operation) => {
-    setOptions((prev) => {
-      return {
-        ...prev,
-        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
-      };
-    });
-  };
-
-  const handleSearch = () => {
-    navigate("/Holiday_packages", { state: { destination, date, options } });
-  };
   const [myProfession, setMyProfession] = useState("All Packages");
   const [active, setActive] = useState(1);
   const professions = [
