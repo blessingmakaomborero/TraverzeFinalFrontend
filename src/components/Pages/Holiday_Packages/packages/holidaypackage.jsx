@@ -1,5 +1,6 @@
 import styles from "../Holiday_packages.module.scss";
 import Card from "../../../card/Card";
+import BACKEND_URL from '../../../../customHooks/helper'
 import { useQuery } from "@apollo/client";
 import { HOLIDAY_PACKAGES_CARDS } from "../../../../utils/Queries";
 import React from "react";

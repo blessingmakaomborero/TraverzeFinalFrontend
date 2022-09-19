@@ -2,6 +2,7 @@ import styles from "../Holiday_packages.module.scss";
 import Card from "../../../card/Card";
 import { useQuery } from "@apollo/client";
 import { WEEKENDBREAKS } from "../../../../utils/Queries";
+import BACKEND_URL from '../../../../customHooks/helper'
 import React from "react";
 
 const Weekendbreaks = () => {

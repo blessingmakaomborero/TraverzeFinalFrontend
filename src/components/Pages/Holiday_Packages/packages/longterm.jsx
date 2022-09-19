@@ -3,6 +3,7 @@ import Card from "../../../card/Card";
 import { useQuery } from "@apollo/client";
 import { LONGTERMS } from "../../../../utils/Queries";
 import React from "react";
+import BACKEND_URL from '../../../../customHooks/helper'
 import styled from "styled-components";
 
 const Longterms = () => {
