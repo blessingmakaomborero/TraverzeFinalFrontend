@@ -1,6 +1,5 @@
 import styles from "../Holiday_packages.module.scss";
 import Card from "../../../card/Card";
-import BACKEND_URL from '../../../../customHooks/helper'
 import { useQuery } from "@apollo/client";
 import { HOLIDAY_PACKAGES_CARDS } from "../../../../utils/Queries";
 import React from "react";
@@ -24,7 +23,7 @@ const Holidays = () => {
                 info={{
                   title: `${Package.attributes.title}`,
                   Category: "Holiday Package",
-                  imageSource: `${BACKEND_URL}${Package.attributes.preview_image.data.attributes.url}`,
+                  imageSource: `https://traverzetravel.herokuapp.com${Package.attributes.preview_image.data.attributes.url}`,
                   City: `${Package.attributes.location.data.attributes.City}`,
                   neighbourhood: `${Package.attributes.Neighbourhood}`,
                   street: `${Package.attributes.Street}`,

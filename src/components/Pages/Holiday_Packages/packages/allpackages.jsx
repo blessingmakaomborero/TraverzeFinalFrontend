@@ -1,7 +1,6 @@
 import styles from "../Holiday_packages.module.scss";
 import Card from "../../../card/Card";
 import { useQuery } from "@apollo/client";
-import BACKEND_URL from '../../../../customHooks/helper'
 import {ALL_PACKAGES } from "../../../../utils/Queries";
 import React from "react";
 import styled from "styled-components";
@@ -24,7 +23,7 @@ const Allpackages = () => {
                 info={{
                   title: `${Package.attributes.title}`,
                   Category: "All Packages",
-                  imageSource: `${BACKEND_URL}${Package.attributes.preview_image.data.attributes.url}`,
+                  imageSource: `https://traverzetravel.herokuapp.com${Package.attributes.preview_image.data.attributes.url}`,
                   City: `${Package.attributes.location.data.attributes.City}`,
                   neighbourhood: `${Package.attributes.Neighbourhood}`,
                   street: `${Package.attributes.Street}`,
