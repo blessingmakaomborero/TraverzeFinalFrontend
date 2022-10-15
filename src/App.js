@@ -12,7 +12,7 @@ import Hotel from "./components/Pages/Holiday_Packages/hotel/Hotel";
 import List from "./components/Pages/Holiday_Packages/list/List";
 import BlogSingle from "./components/Pages/Travel-Updates/Blog/blog-single-page/BlogSingle"
 import SingleService from "./components/services/servicedetails";
-import ContactUsPage from "./components/forms/ContactUsPage";
+import ContactUsPage from "./components/Pages/Contactus/ContactUsPage";
 import SupportEngine from "./components/Pages/Home/support_chat/SupportEngine";
 
  

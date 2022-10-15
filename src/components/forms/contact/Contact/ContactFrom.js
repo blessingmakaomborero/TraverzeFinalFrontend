@@ -1,4 +1,10 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom";
+import {
+  AiOutlineFacebook,
+  AiOutlineInstagram,
+  AiOutlineTwitter,
+} from "react-icons/ai";
 import "./Contact.css"
 
 const ContactFrom = () => {
@@ -80,11 +86,11 @@ const ContactFrom = () => {
 
           <div className='side-content'>
             <h3>Visit our location</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit amet consectetur.</p>
+            <p>1 Kenny Close Avondale Shops harare </p>
             <br />
 
             <h3>Message us</h3>
-            <span>info@exampal.com</span>
+            <span>enquiries@traverzetravel.co.zw</span>
             <br />
             <span>+01 123 456 789</span>
             <br />
@@ -93,10 +99,16 @@ const ContactFrom = () => {
               <h3>Follow Us</h3>
 
               <div className='flex_space'>
-                <i className='fab fa-facebook-f'></i>
-                <i className='fab fa-twitter'></i>
-                <i className='fab fa-linkedin'></i>
-                <i className='fab fa-instagram'></i>
+              
+          <Link to="https://www.facebook.com/TraverzeTravel/">
+            <AiOutlineFacebook />
+          </Link>
+          <Link to="https://twitter.com/TraverzeTravel/">
+            <AiOutlineTwitter />
+          </Link>
+                <i className='fab fa-instagram'><Link to="https://www.instagram.com/traverzetravel/">
+            <AiOutlineInstagram />
+          </Link></i>
                 <i className='fab fa-pinterest'></i>
                 <i className='fab fa-youtube'></i>
               </div>

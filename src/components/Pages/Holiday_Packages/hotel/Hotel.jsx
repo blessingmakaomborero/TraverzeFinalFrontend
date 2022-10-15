@@ -1,4 +1,4 @@
-import "./hotel.css";
+import styles from "./hotel.scss";
 import Navbar from "../../../../components/navbar/Navbar";
 import ShowAndHide from "./showadd";
 import MailList from "../mailList/MailList";
@@ -68,60 +68,60 @@ const Holiday_package = () => {
       <div>
         <Navbar />
 
-        <div className="hotelContainer" key={id}>
+        <div className={styles.hotelContainer} key={id}>
           {open && (
-            <div className="slider">
+            <div className={styles.slider}>
               <FontAwesomeIcon
                 icon={faCircleXmark}
-                className="close"
+                className={styles.close}
                 onClick={() => setOpen(false)}
               />
               <FontAwesomeIcon
                 icon={faCircleArrowLeft}
-                className="arrow"
+                className={styles.arrow}
                 onClick={() => handleMove("l")}
               />
-              <div className="sliderWrapper">
+              <div className={styles.sliderWrapper}>
                 <img
                   src={
                     BACKEND_URL +
                     preview_images.data[slideNumber].attributes.url
                   }
                   alt=""
-                  className="sliderImg"
+                  className={styles.sliderImg}
                 />
               </div>
               <FontAwesomeIcon
                 icon={faCircleArrowRight}
-                className="arrow"
+                className={styles.arrow}
                 onClick={() => handleMove("r")}
               />
             </div>
           )}
-          <div className="hotelWrapper">
+          <div className={styles.hotelWrapper}>
             {loading || error ? (
               <h1 style={{ color: "#333" }}>Loading ...</h1>
             ) : (
               <>
                 
-                <h1 className="hotelTitle">{title}</h1>
-                <div className="hotelAddress">
+                <h1 className={styles.hotelTitle}>{title}</h1>
+                <div className={styles.hotelAddress}>
                   <FontAwesomeIcon icon={faLocationDot} />
                   <span>{location.data.attributes.City}</span>
                 </div>
-                <span className="hotelDistance">Excellent location</span>
-                <span className="hotelPriceHighlight">
+                <span className={styles.hotelDistance}>Excellent location</span>
+                <span className={styles.hotelPriceHighlight}>
                   Book a stay for ${cost}
                 </span>
-                <div className="hotelImages">
+                <div className={styles.hotelImages}>
                   {preview_images.data.map(({ attributes }, i) => {
                     return (
-                      <div className="hotelImgWrapper" key={i}>
+                      <div className={styles.hotelImgWrapper} key={i}>
                         <img
                           onClick={() => handleOpen(i)}
                           src={BACKEND_URL + attributes.url}
                           alt=""
-                          className="hotelImg"
+                          className={styles.hotelImg}
                         />
                       </div>
                     );
@@ -130,15 +130,15 @@ const Holiday_package = () => {
                 <div >
                   <ShowAndHide />
                 </div>
-                <div className="hotelDetails">
-                  <div className="hotelDetailsTexts">
-                    <h1 className="hotelTitle">
+                <div className={styles.hotelDetails}>
+                  <div className={styles.hotelDetailsTexts}>
+                    <h1 className={styles.hotelTitle}>
                       {/*categories.data.attributes.Category*/ ""}Stay in the
                       heart of City
                     </h1>
-                    <p className="hotelDesc">{description}</p>
+                    <p className={styles.hotelDesc}>{description}</p>
                   </div>
-                  <div className="hotelDetailsPrice">
+                  <div className={styles.hotelDetailsPrice}>
                     <h1>Perfect for a {duration} stay!</h1>
                     <span>
                       {flights}Located in the real heart of Krakow, this
@@ -147,7 +147,7 @@ const Holiday_package = () => {
                     <h2>
                       <b>${cost}</b> ({duration})
                     </h2>
-                    <div className="App">
+                    <div className={styles.App}>
                       <CustomizedDialogs title={`${title}`} cost={`${cost}`}>
                         <RegistrationForm />
                       </CustomizedDialogs>

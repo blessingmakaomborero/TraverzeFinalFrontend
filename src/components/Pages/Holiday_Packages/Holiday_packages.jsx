@@ -1,19 +1,9 @@
-import {
-  faBed,
-  faCalendarDays,
-  faPerson,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
-import { DateRange } from "react-date-range";
 import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../../navbar/Navbar";
 import HeadTitle from "../../navbar/HeadTitle/HeadTitle";
-import styles from "./Holiday_packages.module.scss";
 
 import React from "react";
 import styled from "styled-components";
@@ -40,20 +30,7 @@ const Holiday_Packages = ({type}) => {
       <Navbar />
       <HeadTitle />
     
-      <div className={styles.content}>
     
-        <div className="header" >
-
-     
-        {type !== "list" && (
-          <>
-            
-           
-          </>
-        )}
-      </div>
-    </div>
-  
     <Section id="recommend">
       
       <div className="packages">
