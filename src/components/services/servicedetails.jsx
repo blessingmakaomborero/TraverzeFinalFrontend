@@ -5,7 +5,6 @@ import HeadTitle from "../navbar/HeadTitle/HeadTitle";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import "./servicesingle.css";
-import { BACKEND_URL } from "../../customHooks/helper";
 import { SERVICE } from "../../utils/Queries";
 import Contactus from "../forms/contact/contactform";
 
@@ -18,7 +17,7 @@ const SingleService = () => {
   if (error) console.log(error);
   if (data) console.log(data);
 
-  const { title, subTitle, icon, image, info } = data.service.data.attributes;
+  const { title, subTitle, Icon, info } = data.service.data.attributes;
 
   return (
     <main>
@@ -37,7 +36,7 @@ const SingleService = () => {
               <div className="main-content">
                 <div className="imagpost">
                   <img
-                    src={`${BACKEND_URL}${image.data.attributes.url}`}
+                    src={`${Icon.data.attributes.url}`}
                     alt=""
                   />
                 </div>

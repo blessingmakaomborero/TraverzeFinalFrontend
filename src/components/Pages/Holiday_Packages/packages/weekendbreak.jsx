@@ -22,7 +22,7 @@ const Weekendbreaks = () => {
                 info={{
                   title: `${Package.attributes.title}`,
                   Category: "Weekend Break",
-                  imageSource: `https://traverzetravel.herokuapp.com${Package.attributes.preview_image.data.attributes.url}`,
+                  imageSource: `${Package.attributes.preview_image.data.attributes.url}`,
                   City: `${Package.attributes.location.data.attributes.City}`,
                   neighbourhood: `${Package.attributes.Neighbourhood}`,
                   street: `${Package.attributes.Street}`,

@@ -3,7 +3,6 @@ import Card from "../../../card/Card";
 import { useQuery } from "@apollo/client";
 import { LONGTERMS } from "../../../../utils/Queries";
 import React from "react";
-import styled from "styled-components";
 
 const Longterms = () => {
     const { loading, data, error } = useQuery(LONGTERMS);
@@ -23,7 +22,7 @@ const Longterms = () => {
                 info={{
                   title: `${Package.attributes.title}`,
                   Category: "Long Term Slow Travel",
-                  imageSource: `https://traverzetravel.herokuapp.com${Package.attributes.preview_image.data.attributes.url}`,
+                  imageSource: `${Package.attributes.preview_image.data.attributes.url}`,
                   City: `${Package.attributes.location.data.attributes.City}`,
                   neighbourhood: `${Package.attributes.Neighbourhood}`,
                   street: `${Package.attributes.Street}`,

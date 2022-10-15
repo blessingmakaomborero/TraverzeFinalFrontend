@@ -3,7 +3,6 @@ import Card from "../../../card/Card";
 import { useQuery } from "@apollo/client";
 import { GROUPTOURS } from "../../../../utils/Queries";
 import React from "react";
-import styled from "styled-components";
 
 const Grouptours = () => {
     const { loading, data, error } = useQuery(GROUPTOURS);
@@ -23,7 +22,7 @@ const Grouptours = () => {
                 info={{
                   title: `${Package.attributes.title}`,
                   Category: "All Packages",
-                  imageSource: `https://traverzetravel.herokuapp.com${Package.attributes.preview_image.data.attributes.url}`,
+                  imageSource: `${Package.attributes.preview_image.data.attributes.url}`,
                   City: `${Package.attributes.location.data.attributes.City}`,
                   neighbourhood: `${Package.attributes.Neighbourhood}`,
                   street: `${Package.attributes.Street}`,

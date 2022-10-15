@@ -1,1 +1,1 @@
-export const BACKEND_URL = "https://traverzetravel.herokuapp.com"
+export const BACKEND_URL = "https://traverzetravel.herokuapp.com"//"http://localhost:1337"}
