@@ -21,7 +21,7 @@ const Grouptours = () => {
                 secondClass={styles.card}
                 info={{
                   title: `${Package.attributes.title}`,
-                  Category: "All Packages",
+                  Category: "Group Tours",
                   imageSource: `${Package.attributes.preview_image.data.attributes.url}`,
                   City: `${Package.attributes.location.data.attributes.City}`,
                   neighbourhood: `${Package.attributes.Neighbourhood}`,

@@ -1,8 +1,7 @@
-import styles from "./hotel.scss";
+import "./hotel.css";
 import Navbar from "../../../../components/navbar/Navbar";
 import ShowAndHide from "./showadd";
 import MailList from "../mailList/MailList";
-import { BACKEND_URL } from "../../../../customHooks/helper";
 import { useQuery } from "@apollo/client";
 import { PACKAGE } from "../../../../utils/Queries";
 import CustomizedDialogs from "../../../forms/dialog";
@@ -54,10 +53,10 @@ const Holiday_package = () => {
   const handleMove = (direction) => {
     let newSlideNumber;
 
-    if (direction === "l") {
+    if (direction === "1") {
       newSlideNumber = slideNumber === 0 ? 1 : slideNumber - 1;
     } else {
-      newSlideNumber = slideNumber === 2 ? 0 : slideNumber + 1;
+      newSlideNumber = slideNumber === 1 ? 0 : slideNumber + 1;
     }
 
     setSlideNumber(newSlideNumber);
@@ -68,60 +67,59 @@ const Holiday_package = () => {
       <div>
         <Navbar />
 
-        <div className={styles.hotelContainer} key={id}>
+        <div className="hotelContainer" key={id}>
           {open && (
-            <div className={styles.slider}>
+            <div className="slider">
               <FontAwesomeIcon
                 icon={faCircleXmark}
-                className={styles.close}
+                className="close"
                 onClick={() => setOpen(false)}
               />
               <FontAwesomeIcon
                 icon={faCircleArrowLeft}
-                className={styles.arrow}
+                className="arrow"
                 onClick={() => handleMove("l")}
               />
-              <div className={styles.sliderWrapper}>
+              <div className="sliderWrapper">
                 <img
                   src={
-                    BACKEND_URL +
-                    preview_images.data[slideNumber].attributes.url
+                   preview_images.data[slideNumber].attributes.url
                   }
                   alt=""
-                  className={styles.sliderImg}
+                  className="sliderImg"
                 />
               </div>
               <FontAwesomeIcon
                 icon={faCircleArrowRight}
-                className={styles.arrow}
+                className="arrow"
                 onClick={() => handleMove("r")}
               />
             </div>
           )}
-          <div className={styles.hotelWrapper}>
+          <div className="hotelWrapper">
             {loading || error ? (
               <h1 style={{ color: "#333" }}>Loading ...</h1>
             ) : (
               <>
                 
-                <h1 className={styles.hotelTitle}>{title}</h1>
-                <div className={styles.hotelAddress}>
+                <h1 className="hotelTitle">{title}</h1>
+                <div className="hotelAddress">
                   <FontAwesomeIcon icon={faLocationDot} />
                   <span>{location.data.attributes.City}</span>
                 </div>
-                <span className={styles.hotelDistance}>Excellent location</span>
-                <span className={styles.hotelPriceHighlight}>
+                <span className="hotelDistance">Excellent location</span>
+                <span className="hotelPriceHighlight">
                   Book a stay for ${cost}
                 </span>
-                <div className={styles.hotelImages}>
+                <div className="hotelImages">
                   {preview_images.data.map(({ attributes }, i) => {
                     return (
-                      <div className={styles.hotelImgWrapper} key={i}>
+                      <div className="hotelImgWrapper" key={i}>
                         <img
                           onClick={() => handleOpen(i)}
-                          src={BACKEND_URL + attributes.url}
+                          src={attributes.url}
                           alt=""
-                          className={styles.hotelImg}
+                          className="hotelImg"
                         />
                       </div>
                     );
@@ -130,15 +128,15 @@ const Holiday_package = () => {
                 <div >
                   <ShowAndHide />
                 </div>
-                <div className={styles.hotelDetails}>
-                  <div className={styles.hotelDetailsTexts}>
-                    <h1 className={styles.hotelTitle}>
+                <div className="hotelDetails">
+                  <div className="hotelDetailsTexts">
+                    <h1 className="hotelTitle">
                       {/*categories.data.attributes.Category*/ ""}Stay in the
                       heart of City
                     </h1>
-                    <p className={styles.hotelDesc}>{description}</p>
+                    <p className="hotelDesc">{description}</p>
                   </div>
-                  <div className={styles.hotelDetailsPrice}>
+                  <div className="hotelDetailsPrice">
                     <h1>Perfect for a {duration} stay!</h1>
                     <span>
                       {flights}Located in the real heart of Krakow, this
@@ -147,7 +145,7 @@ const Holiday_package = () => {
                     <h2>
                       <b>${cost}</b> ({duration})
                     </h2>
-                    <div className={styles.App}>
+                    <div className="App">
                       <CustomizedDialogs title={`${title}`} cost={`${cost}`}>
                         <RegistrationForm />
                       </CustomizedDialogs>

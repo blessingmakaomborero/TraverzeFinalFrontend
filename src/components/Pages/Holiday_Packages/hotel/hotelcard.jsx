@@ -1,14 +1,14 @@
 import {React} from 'react';
-import styles from"./hotel.scss";
+import "./hotel.css";
 
 
 const Hotelcard = ({data, cardIndex}) =>{
     return(
-        <div className={styles.hotelDetails}>
+        <div className="hotelDetails">
             {data[cardIndex].map((item ,i)=>(
-                 <div className={styles.hotelDetailsPrice} key={i}>
+                 <div className="hotelDetailsPrice" key={i}>
                 
-                     <div className={styles.hotelDesc}>
+                     <div className="hotelDesc">
                         
                  {item.name}
                  

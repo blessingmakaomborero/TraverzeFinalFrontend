@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactMarkdown from 'react-markdown'
 import Hotelcard from "./hotelcard";
 import styled from "styled-components";
-import styles from "./hotel.scss";
+import "./hotel.css";
 import { useQuery } from "@apollo/client";
 import {PACKAGE } from "../../../../utils/Queries";
 import { useParams } from "react-router-dom";
@@ -65,7 +65,7 @@ console.log(activities)
         <div>
       <Section id="recommend">
       
-      <div className={styles.packages}>
+      <div className="packages">
         <ul>
           {professions.map(( profession,index,) => {
             return (
