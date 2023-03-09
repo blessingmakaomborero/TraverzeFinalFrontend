@@ -1,5 +1,5 @@
 .aboutCard h4 {
-  color: #31b675;
+  color: #1770b0;
 }
 .aboutCard h1 {
   font-size: 35px;
@@ -40,8 +40,8 @@
   bottom: 5%;
   left: 10%;
   background-color: rgba(0, 0, 0, 0.7);
-  width: 70%;
-  height: 30px;
+  width: 60%;
+  height: 20px;
   border-radius: 5px;
   z-index: -1;
 }
@@ -72,7 +72,7 @@
   font-weight: bold;
 }
 .features h1 span {
-  color: #31b675;
+  color: #1770b0;
 }
 @media screen and (max-width: 768px) {
   .features .flex_space,
@@ -85,12 +85,12 @@
     display: none;
   }
   .aboutCard .row {
-    width: 100%;
+    width: 30%;
   }
   .aboutCard .image {
-    margin-top: 50px;
+    margin-top: 30px;
   }
   .aboutCard img {
-    width: 100%;
+    width: 30%;
   }
 }

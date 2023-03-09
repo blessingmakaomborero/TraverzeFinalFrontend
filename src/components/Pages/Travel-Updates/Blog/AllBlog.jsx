@@ -2,16 +2,24 @@ import React from "react"
 import "./BlogHome.css"
 import { BACKEND_URL } from "../../../../customHooks/helper"
 import { useQuery } from "@apollo/client"
-import BlogCard from "./BlogCard"
+import BlogCard from "./BlogCard";
+import {css} from "@emotion/react";
+import {PropagateLoader} from "react-spinners";
 import { BLOGS } from "../../../../utils/Queries"
+
 
 const AllBlog = () => {
   const { loading, data, error } = useQuery(BLOGS);
+  const override = css`
+	    display:block;
+		margin: 0 auto;
+		border-color: blue;
+	`;
 
     
  // const [items, setItems] = useState(BlogData)
   
-  if (loading) return <h1>loading please wait</h1>
+  if (loading) return <PropagateLoader Loading={loading} css={override} size={20}/>
   if(error) console.log(error)
   if(data) console.log(data)
   

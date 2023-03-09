@@ -2,16 +2,29 @@ import styles from "../Holiday_packages.module.scss";
 import Card from "../../../card/Card";
 import { useQuery } from "@apollo/client";
 import { WEEKENDBREAKS } from "../../../../utils/Queries";
-import BACKEND_URL from '../../../../customHooks/helper'
+import { BACKEND_URL } from "../../../../customHooks/helper";
 import React from "react";
+import {css} from "@emotion/react";
+import {PropagateLoader} from "react-spinners";
+
 
 const Weekendbreaks = () => {
     const { loading, data, error } = useQuery(WEEKENDBREAKS);
+    const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: blue;
+  `;
 
     return (
         <div className={styles.card}>
         {loading || error ? (
-          <h1 style={{ color: "#333" }}>Loading ...</h1>
+           <PropagateLoader
+           color="#007bff"
+           Loading={loading}
+           css={override}
+           size={20}
+         />
         ) : (
           <div className={styles.cards}>
 

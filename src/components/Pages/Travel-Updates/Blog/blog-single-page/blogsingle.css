@@ -78,7 +78,7 @@ a {
     justify-content: space-between;
   }
   .container {
-    max-width: 85%;
+    max-width: 100%;
     margin: auto;
   }
   li {
@@ -146,7 +146,7 @@ a {
   }
   
   .row {
-    width: 50%;
+    width: 100%;
   }
   .top {
     margin-top: 100px;
@@ -190,15 +190,16 @@ a {
     right: -20px;
   }
   .full_container {
-    max-width: 95%;
+    max-width: 100%;
     margin: auto;
   }
   .main-content {
-    width: 70%;
+    width: 100%;
   }
   .side-content {
-    width: 30%;
-    margin-left: 40px;
+    width: 100%;
+    margin-left: 0%;
+    
   }
   .grid {
     display: grid;
@@ -253,6 +254,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
   
   .sidebarItem {

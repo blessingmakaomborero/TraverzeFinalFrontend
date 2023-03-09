@@ -1,18 +1,29 @@
 import styles from "../Holiday_packages.module.scss";
 import Card from "../../../card/Card";
 import { useQuery } from "@apollo/client";
-import BACKEND_URL from '../../../../customHooks/helper'
+import { BACKEND_URL } from "../../../../customHooks/helper";
 import { GROUPTOURS } from "../../../../utils/Queries";
 import React from "react";
-import styled from "styled-components";
+import {css} from "@emotion/react";
+import {PropagateLoader} from "react-spinners";
 
 const Grouptours = () => {
     const { loading, data, error } = useQuery(GROUPTOURS);
+    const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: blue;
+  `;
 
     return (
         <div className={styles.card}>
         {loading || error ? (
-          <h1 style={{ color: "#333" }}>Loading ...</h1>
+           <PropagateLoader
+           color="#007bff"
+           Loading={loading}
+           css={override}
+           size={20}
+         />
         ) : (
           <div className={styles.cards}>
 
@@ -23,7 +34,7 @@ const Grouptours = () => {
                 secondClass={styles.card}
                 info={{
                   title: `${Package.attributes.title}`,
-                  Category: "All Packages",
+                  Category: "Group Tours",
                   imageSource: `${BACKEND_URL}${Package.attributes.preview_image.data.attributes.url}`,
                   City: `${Package.attributes.location.data.attributes.City}`,
                   neighbourhood: `${Package.attributes.Neighbourhood}`,

@@ -73,25 +73,25 @@
     transform: scale(1.04);
   }
  
-  h1 {
+  .galleryheader {
     color: var(--dark-green);
     text-align: center;
     position: relative;
-    font-size: 3rem;
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
     width: 80%;
     @media screen and (max-width: 1150px) {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
         width: 90%;
     }
     @media screen and (max-width: 875px) {
         width: 100%;
     }
     @media screen and (max-width: 768px) {
-        font-size: 3rem;
+        font-size: 1.8rem;
     }
     @media screen and (max-width: 425px) {
-        font-size: 2.3rem;
+        font-size: 1.3rem;
     }
 }
 .sectionsa{

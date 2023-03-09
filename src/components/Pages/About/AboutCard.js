@@ -15,7 +15,7 @@ const AboutCard = () => {
           <p>We offer a variety of travel planning services to businesses, groups and individuals. Having 20 years of taking travelers around the globe, Traverze prides itself in offering clients the best travel solutions. So, you can trust that when you travel with us, we won't just be there for your first adventure, we'll be there every step of your journey</p>
           
         </div>
-        <div className='row imags'>
+        <div className='row img'>
           <img src={builsding4} alt='' />
         </div>
       </div>

@@ -3,6 +3,8 @@ import ReactMarkdown from 'react-markdown'
 import Hotelcard from "./hotelcard";
 import styled from "styled-components";
 import "./hotel.css";
+import {css} from "@emotion/react";
+import {PropagateLoader} from "react-spinners";
 import { useQuery } from "@apollo/client";
 import {PACKAGE } from "../../../../utils/Queries";
 import { useParams } from "react-router-dom";
@@ -16,6 +18,12 @@ const ShowAndHide = () => {
     itinerary,
     activities,
     } = data.package.data.attributes
+    const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: blue;
+  `;
+
 
 
   const Data = [
@@ -55,7 +63,12 @@ const ShowAndHide = () => {
     ];
 
 
-    if (loading) return <h1>loading please wait</h1>
+    if (loading) return <PropagateLoader
+    color="#007bff"
+    Loading={loading}
+    css={override}
+    size={20}
+  />
     if(error) console.log(error)
     if(data) console.log(data)
     
@@ -88,16 +101,16 @@ console.log(activities)
       </Section>
       <div>
       {myProfession === "Activities" && (
-                            <Hotelcard data={Data} cardIndex = {0}/>
+                            <Hotelcard data={Data}  key ={0} cardIndex = {0}/>
                         )}
                         {myProfession === "Itinerary" && (
-                            <Hotelcard data={Data} cardIndex = {1}/>
+                            <Hotelcard data={Data} key={1} cardIndex = {1}/>
                         )}
                         {myProfession === "Includes" && (
-                            <Hotelcard data={Data} cardIndex = {2}/>
+                            <Hotelcard data={Data} key={2} cardIndex = {2}/>
                         )}
                         {myProfession === "Excludes" && (
-                            <Hotelcard data={Data} cardIndex = {3}/>
+                            <Hotelcard data={Data} key={3} cardIndex = {3}/>
                         )}
     </div>
         </div>

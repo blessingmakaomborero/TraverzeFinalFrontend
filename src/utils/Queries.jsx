@@ -394,8 +394,13 @@ query blogs{
       id
       attributes{
         title
+        subTitle
         rating
         createdAt
+        quote
+        para1
+        para2
+        para3
         paragraph
         Description
         Cover{

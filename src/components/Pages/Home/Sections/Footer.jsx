@@ -1,6 +1,6 @@
 import styles from "./Footer.module.scss";
 import { Link } from "react-router-dom";
-import { BsArrowRight } from "react-icons/bs";
+import MailchimpSubscribe from './newsletter/NesletterSubscribe'
 
 import {
   AiOutlineFacebook,
@@ -65,9 +65,7 @@ const Footer = () => {
     </ul>
 
     <ul className={styles.support}>
-      <li>
-        <span>Support</span>
-      </li>
+    <li><span><h3 className="h3 ">Support</h3></span></li>
       <li>
         <Link to="/">FAQ's</Link>
       </li>
@@ -92,22 +90,8 @@ const Footer = () => {
       </li>
     </ul>
 
-    <ul className={styles.subscribe}>
-      <li>
-        <span>Subscribe</span>
-      </li>
-      <li>
-        <p>Subscribe to get the latest new and promo from us</p>
-      </li>
-      <li>
-        <div className={styles.subscribe_input}>
-          <input type="text" placeholder="Email Andress" />
-          <button>
-            <BsArrowRight />
-          </button>
-        </div>
-      </li>
-    </ul>
+    <MailchimpSubscribe />
+   
   </footer>
   );
 };

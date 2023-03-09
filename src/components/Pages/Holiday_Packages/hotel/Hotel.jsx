@@ -1,5 +1,6 @@
 import "./hotel.css";
-import Navbar from "../../../../components/navbar/Navbar";
+import Navbar from "../../../../components/navbar/Navbar copy";
+import { navlinks } from "../../../../data/travigodata";
 import ShowAndHide from "./showadd";
 import MailList from "../mailList/MailList";
 import { BACKEND_URL } from "../../../../customHooks/helper";
@@ -8,30 +9,42 @@ import { PACKAGE } from "../../../../utils/Queries";
 import CustomizedDialogs from "../../../forms/dialog";
 import RegistrationForm from "../../../forms/enquiry";
 import {  useParams } from "react-router-dom";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Side from "../../Travel-Updates/Blog/singlePage/sideContent/side/Side";
+import {css} from "@emotion/react";
+import {PropagateLoader} from "react-spinners";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faCircleArrowLeft,
-  faCircleArrowRight,
+  faCircleChevronLeft, 
+  faCircleChevronRight, 
   faCircleXmark,
   faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons'
 import { useState, } from "react";
 import Footer from "../../Home/Sections/Footer";
+
 
 const Holiday_package = () => {
   const { id } = useParams();
   const { loading, data, error } = useQuery(PACKAGE, { variables: { id: id } });
-  const [slideNumber, setSlideNumber] = useState(0);
-  const [open, setOpen] = useState(false);
+  const [slideNumber, setSlideNumber] = useState(0)
+  const [openModal, setOpenModal] = useState(false)
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: blue;
+`;
 
  
-  
-  
+ 
 
   //console.log(id)
 
-  if (loading) return <h1>loading please wait</h1>;
+  if (loading) return        <PropagateLoader
+  color="#007bff"
+  Loading={loading}
+  css={override}
+  size={20}
+/>
   if (error) console.log(error);
   if (data) console.log(data);
 
@@ -44,60 +57,55 @@ const Holiday_package = () => {
     location,
     flights,
   } = data.package.data.attributes;
-  console.log();
 
-  const handleOpen = (i) => {
-    setSlideNumber(i);
-    setOpen(true);
-  };
+  const galleryImages= preview_images.data;
+  console.log(galleryImages)
+  
+  const handleOpenModal = (index) => {
+    setSlideNumber(index)
+    setOpenModal(true)
+  }
 
-  const handleMove = (direction) => {
-    let newSlideNumber;
+  // Close Modal
+  const handleCloseModal = () => {
+    setOpenModal(false)
+  }
 
-    if (direction === "l") {
-      newSlideNumber = slideNumber === 0 ? 1 : slideNumber - 1;
-    } else {
-      newSlideNumber = slideNumber === 2 ? 0 : slideNumber + 1;
-    }
+  // Previous Image
+  const prevSlide = () => {
+    slideNumber === 0 
+    ? setSlideNumber( galleryImages.length -1 ) 
+    : setSlideNumber( slideNumber - 1 )
+  }
 
-    setSlideNumber(newSlideNumber);
-  };
+  // Next Image  
+  const nextSlide = () => {
+    slideNumber + 1 === galleryImages.length 
+    ? setSlideNumber(0) 
+    : setSlideNumber(slideNumber + 1)
+  } 
+  
  
   return (
     <main>
-      <div>
-        <Navbar />
 
+      <div>
+      <Navbar navlinks={navlinks} />
+      
+      <div className='container'>
+          <section className='mainContent details'>
         <div className="hotelContainer" key={id}>
-          {open && (
-            <div className="slider">
-              <FontAwesomeIcon
-                icon={faCircleXmark}
-                className="close"
-                onClick={() => setOpen(false)}
-              />
-              <FontAwesomeIcon
-                icon={faCircleArrowLeft}
-                className="arrow"
-                onClick={() => handleMove("l")}
-              />
-              <div className="sliderWrapper">
-                <img
-                  src={
-                    BACKEND_URL +
-                    preview_images.data[slideNumber].attributes.url
-                  }
-                  alt=""
-                  className="sliderImg"
-                />
-              </div>
-              <FontAwesomeIcon
-                icon={faCircleArrowRight}
-                className="arrow"
-                onClick={() => handleMove("r")}
-              />
-            </div>
-          )}
+        {openModal && 
+        <div className='sliderWrap'>
+          <FontAwesomeIcon icon={faCircleXmark} className='btnClose' onClick={handleCloseModal}  />
+          <FontAwesomeIcon icon={faCircleChevronLeft} className='btnPrev' onClick={prevSlide} />
+          <FontAwesomeIcon icon={faCircleChevronRight} className='btnNext' onClick={nextSlide} />
+          <div className='fullScreenImage'>
+            <img src={BACKEND_URL +galleryImages[slideNumber].attributes.url} alt='' />
+          </div>
+        </div>
+      }
+          
           <div className="hotelWrapper">
             {loading || error ? (
               <h1 style={{ color: "#333" }}>Loading ...</h1>
@@ -113,20 +121,21 @@ const Holiday_package = () => {
                 <span className="hotelPriceHighlight">
                   Book a stay for ${cost}
                 </span>
-                <div className="hotelImages">
-                  {preview_images.data.map(({ attributes }, i) => {
-                    return (
-                      <div className="hotelImgWrapper" key={i}>
-                        <img
-                          onClick={() => handleOpen(i)}
-                          src={BACKEND_URL + attributes.url}
-                          alt=""
-                          className="hotelImg"
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
+                <div className='galleryWrap'>
+        {
+          galleryImages && galleryImages.map(({ attributes }, index) => {
+            return(
+              <div 
+                className='single' 
+                key={index}
+                onClick={ () => handleOpenModal(index) }
+              >
+                <img src={BACKEND_URL + attributes.url} alt='' />
+              </div>
+            )
+          })
+        }
+      </div>
                 <div >
                   <ShowAndHide />
                 </div>
@@ -156,10 +165,19 @@ const Holiday_package = () => {
                 </div>
               </>
             )}
+          
+            </div>
+              
           </div>
-          <MailList />
+          </section>
+          <section className='sideContent'>
+              <Side />
+            </section>
+        
         </div>
+        
       </div>
+      <MailList />
       <Footer />
     </main>
   );

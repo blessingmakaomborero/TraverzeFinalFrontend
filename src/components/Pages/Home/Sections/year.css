@@ -1,0 +1,13 @@
+.row {
+    position: center;
+    bottom: 0;
+    width: 100%;
+  }
+  .containser{
+    color: var(--gray);
+                font-weight: 600;
+                font-size: 1rem;
+                    transition: color ease-in-out 200ms;
+                
+  }
+  

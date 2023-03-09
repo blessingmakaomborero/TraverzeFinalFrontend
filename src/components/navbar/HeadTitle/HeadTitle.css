@@ -1,13 +1,13 @@
 .image-heading {
-  background-image: url("../../../assets/building2.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+ 
+ 
+  top: 0;
+ 
+
   color: #fff;
-  height: 10vh;
-  line-height: 10vh;
-  position: relative;
-  z-index: -2;
+  height: 25vh;
+
+
 }
 .image-heading .container {
   display: flex;
@@ -18,12 +18,14 @@
 .image-heading::after {
   content: "";
   position: absolute;
+  background-image: url("../../../assets/building2.jpg");
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.4);
-  height: 10vh;
+  background-size: cover;
+  background-position: center;
+  height: 35%;
   width: 100%;
-  z-index: -1;
+
 }
 .image-heading h1 {
   font-size: 40px;

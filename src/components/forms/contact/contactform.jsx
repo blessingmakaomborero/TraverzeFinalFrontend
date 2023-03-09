@@ -1,139 +1,182 @@
 import React from "react";
-import { Grid, Paper, Button, Typography } from "@material-ui/core";
-import { TextField } from "@material-ui/core";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import MuiPhoneNumber from "material-ui-phone-number";
-import * as Yup from "yup";
+import { Grid, Paper, Typography } from "@material-ui/core";
+import { useForm, Form } from '../useForm';
+import Controls from '../controls/Controls'
 import { useParams } from "react-router-dom";
-import { PACKAGE } from "../../../utils/Queries";
-import { useQuery } from "@apollo/client";
-import { useMutation } from "@apollo/client";
-import { CREATEENQUIRY } from "../../../utils/Mutation";
 
-
+const initialFValues = {
+  name: "",
+  email: "",
+  surname: "",
+  message: "",
+  phone_number: "",
+};
 
 const Contactus = () => {
   const { id } = useParams();
-  const { loading, data, error } = useQuery(PACKAGE, { variables: { id: id } });
+
   const paperStyle = { padding: "0 15px 40px 15px", width: 250 };
-  const btnStyle = { marginTop: 10 };
-  const [Enquiry ,{data1}] = useMutation(CREATEENQUIRY);
-  
-  console.log(data)
+
   // axios
 
  
-  const initialValues = {
-    name: "",
-    email: "",
-    surname: "",
-    message: "",
-    phone_number: "",
-  };
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().min(3, "It's too short").required("Required"),
-    email: Yup.string().email("Enter valid email").required("Required"),
-    // phoneNumber: Yup.number().typeError("Enter valid Phone number").required("Required"),
-  });
-  const onSubmit = (fields , props) => {
-     Enquiry({
-      variables: {
-        name: fields.name,
-        surname: fields.surname,
-        email: fields.email,
-        phone_number: fields.phone_number,
-        message: fields.message
-      
+  const validate = (fieldValues = values) => {
+      let temp = { ...errors }
+      if ('firstName' in fieldValues)
+          temp.firstName = fieldValues.firstName ? "" : "This field is required."
+      if ('lastName' in fieldValues)
+          temp.lastName = fieldValues.lastName ? "" : "This field is required."
+      if ('email' in fieldValues)
+          temp.email = (/$^|.+@.+..+/).test(fieldValues.email) ? "" : "Email is not valid."
+      if ('mobile' in fieldValues)
+          temp.mobile = fieldValues.mobile.length > 9 ? "" : "Minimum 10 numbers required."
+      if ('flightclass' in fieldValues)
+          temp.flightclass = fieldValues.flightclass.length != 0 ? "" : "This field is required."
+      setErrors({
+          ...temp
+      })
+      if (fieldValues == values) {
+          Object.keys(values).forEach(key => {
+              if (values[key] === '' || values[key] == null) {
+                  delete values[key];
+              }
+          });
       }
-    })
-    alert(JSON.stringify(fields), null, 2);
-    props.resetForm();
+
+      if (fieldValues == values)
+          return Object.values(temp).every(x => x == "")
+  }
+  const {
+      values,
+      setValues,
+      errors,
+      setErrors,
+      handleInputChange,
+      resetForm
+  } = useForm(initialFValues, true, validate);
+
+
+  const Submit = async (fields,) => {
+      let url = `http://localhost:1337/api/general-enquiry/general-enquiry`
+      const rawResponse = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify({
+              FirstName: fields.firstName,
+              LastName: fields.surname,
+              Email: fields.email,
+              PhoneNumber: fields.phone_number,
+              Message: fields.message,
+              NameOfOrganisation: fields.NameOfOrganisation,
+
+              ...Form
+          })
+      });
+      const content = await rawResponse.json();
+      console.log(content)
+
+      alert(JSON.stringify(fields), null, 2);
+      resetForm();
   };
-  
+  const handleSubmit = e => {
+      e.preventDefault()
+      if (validate()) {
+          Submit(values)
+          resetForm()
+      }
+  }
   return (
     <Grid>
-      <Paper elevation={0} style={paperStyle}>
+      
         <Grid align="center">
           <Typography variant="caption">Get in Touch With Us</Typography>
         </Grid>
 
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={onSubmit}
-        >
-          {(props) => (
-            <Form noValidate>
-              {/* <TextField label='Name' name="name" fullWidth value={props.values.name}
-                    onChange={props.handleChange} /> */}
 
-              <Field
-                as={TextField}
-                name="name"
-                label="Name"
+
+
+<Typography variant="body2" color="textSecondary" component="p" gutterBottom>
+    Fill up the form and our team will get back to you within 24 hours.
+</Typography>
+<Form onSubmit={handleSubmit} >
+    <Grid container spacing={1}>
+        <Grid >
+            <Controls.Input
+                name="FirstName"
+                label="First Name"
                 fullWidth
-                error={props.errors.name && props.touched.name}
-                helperText={<ErrorMessage name="name" />}
+                value={values.firstName}
+                onChange={handleInputChange}
+                error={errors.firstName}
                 required
-              />
-
-              <Field
-                as={TextField}
+            />
+            <Controls.Input
                 name="surname"
                 label="Surname"
                 fullWidth
-                error={props.errors.surname && props.touched.surname}
-                helperText={<ErrorMessage name="surname" />}
+                value={values.surname}
+                onChange={handleInputChange}
+                error={errors.surname}
                 required
-              />
+            />
+            <Controls.Input
+                name="NameOfOrganisation"
+                label="Name Of Organisation"
+                fullWidth
+                value={values.NameOfOrganisation}
+                onChange={handleInputChange}
+                error={errors.NameOfOrganisation}
+                required
+            />
 
-              {/* <TextField label='Email' name='email' type='Email' fullWidth 
-                    {...props.getFieldProps('email')}/> */}
-
-              <Field
-                as={TextField}
+            <Controls.Input
                 name="email"
                 label="Email"
                 fullWidth
-                error={props.errors.email && props.touched.email}
-                helperText={<ErrorMessage name="email" />}
+                value={values.email}
+                onChange={handleInputChange}
+                error={errors.email}
                 required
-              />
+            />
 
-              <MuiPhoneNumber
+            <Controls.InputPhonenumber
                 data-cy="phoneNumbers"
                 defaultCountry={"zw"}
                 name="phone_number"
                 label="Phone Numbers"
+                value={values.phone_number}
+                onChange={handleInputChange}
+                error={errors.phone_number}
                 fullWidth
                 required
-              
-                onChange={(value) => props.setFieldValue("phone_number", value)}
-                error={props.touched.phone_number && Boolean(props.errors.phone_number)}
-                helperText={props.touched.phone_number && props.errors.phone_number}
-              />
 
-              <Field
-                as={TextField}
+            />
+
+            <Controls.Messagebox
                 label="Message"
                 name="message"
+                onChange={handleInputChange}
+                error={errors.message}
                 fullWidth
+                value={values.message}
                 multiline
                 minRows="5"
-              />
+            />
+            <div>
+                <Controls.Button
+                    type="submit"
+                    text="Enquire" />
+                <Controls.Button
+                    text="Reset"
+                    color="default"
+                    onClick={resetForm} />
+            </div>
+        </Grid>
 
-              <Button
-                type="submit"
-                style={btnStyle}
-                variant="contained"
-                color="primary"
-              >
-                Enquire
-              </Button>
-            </Form>
-          )}
-        </Formik>
-      </Paper>
+    </Grid>
+</Form>
+
+
+     
     </Grid>
   );
 };

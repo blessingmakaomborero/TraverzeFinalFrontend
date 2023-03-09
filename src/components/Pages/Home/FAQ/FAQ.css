@@ -1,0 +1,41 @@
+.faqs-container {
+    position: relative;
+    top: 250px;
+    min-height: 1010px;
+}
+
+.faqs-header {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-wrap: wrap;
+    font-weight: bold;
+    font-size: 1.3rem;
+    line-height: 100%;
+    text-align: left;
+    letter-spacing: -3px;
+    padding-left: 10%;
+    color: #313131;
+    overflow: hidden;
+}
+
+.faq-img {
+    position: relative;
+    width: 650px;
+    height: 700px;
+    top: 5rem;
+    left: 22rem;
+}
+
+.faq-decor {
+    position: relative;
+    top: 9rem;
+    left: -37rem;
+}
+
+.faq-vector334 {
+    position: absolute;
+    top: -300px;
+    left: 640px;
+    z-index: -1;
+}

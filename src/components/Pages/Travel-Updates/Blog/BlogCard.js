@@ -4,7 +4,8 @@ import { Link } from "react-router-dom"
 
 const BlogCard = ({ blog }) => {
   return (
-    <> <Link to={`/blogsingle/${blog.id}`} className='blogItem-link'>
+    <> <Link to={`/SinglePage/${blog.id}`}className='blogItem-link'>
+       
       <div className='items'>
         <div className='img'>
           <img src={blog.cover} alt='Gallery Image' />

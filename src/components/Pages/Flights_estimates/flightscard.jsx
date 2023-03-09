@@ -1,10 +1,8 @@
 import React from 'react';
 import cx from 'clsx';
 import Cover from './ashutosh.png'
-import styless from "./Flights_estimates.module.scss";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
 import CardMedia from '@material-ui/core/CardMedia';
@@ -17,7 +15,7 @@ const PlaneTicketCards = ({flight}) =>  {
 const mainColor = '#003399';
 const lightColor = '#ecf2ff';
 const borderRadius = 12;
-const whitesmoke= '#f5f5f5';
+
 
 const useStyles = makeStyles(({ palette, breakpoints }) => ({
   card: {

@@ -79,7 +79,7 @@ const Gallry = ({ token, ...props }) => {
   <section className="sectionsa" >
       
     <div>
-    <h1>Our Gallery</h1>
+    <h1 className="galleryheader">Our Gallery</h1>
       <div className="slider-wrapper">
         <Slider
           {...settingsMain}

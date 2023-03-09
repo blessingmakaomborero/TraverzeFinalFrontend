@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 
 import SupportWindow from './SupportWindow'
 
-import Avatar from './Avatar'
 
 const SupportEngine = () => {
     const wrapperRef = useRef(null);
@@ -27,14 +26,6 @@ const SupportEngine = () => {
         <div ref={wrapperRef}>
             <SupportWindow visible={visible} />
 
-            <Avatar 
-                onClick={() => setVisible(true)}
-                style={{
-                    position: 'fixed',
-                    bottom: '24px',
-                    right: '24px',
-                }}
-            />
         </div>
     )
 }

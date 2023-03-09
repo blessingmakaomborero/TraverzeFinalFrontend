@@ -11,6 +11,7 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
     }
+  
 
     .brand,
     .services,
@@ -28,6 +29,7 @@ footer {
                 font-size: 1.2rem;
             }
         }
+
 
         li:not(:first-child) {
             a,
@@ -90,5 +92,11 @@ footer {
                 }
             }
         }
+    }
+    .year{
+      
+      
+        position: left;
+        
     }
 }

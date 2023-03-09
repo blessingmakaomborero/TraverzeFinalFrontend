@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from '../../../../globalStyles';
+
 
 export const HeroSections = styled.section`
 	height: 100vh;
@@ -34,18 +34,4 @@ export const ButtonWrapper = styled.div`
 	justify-content: center;
 	flex-flow: wrap;
 	gap: 0.5rem;
-`;
-
-export const HeroButton = styled(Button)`
-	color: black;
-	&:before {
-		background: #fff;
-		height: 500%;
-	}
-	&:hover:before {
-		height: 0%;
-	}
-	&:hover {
-		color: white;
-	}
 `;

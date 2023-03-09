@@ -8,9 +8,11 @@ const ServiceCard = ({ service }) => {
     <>
       <div className="service">
         <div className="icon">
-          <img src={service.Icon} alt="SERVICE" />
+          <span> <img src={service.Icon} alt="SERVICE" /><h1>{service.title}</h1></span>
+
         </div>
-        <h3>{service.title}</h3>
+        
+
         <p>{service.subTitle.substring(0, 100)}...</p>
         <ArrowButton text="Get more info" path={`/servicesingle/${service.id}`} />
       </div>

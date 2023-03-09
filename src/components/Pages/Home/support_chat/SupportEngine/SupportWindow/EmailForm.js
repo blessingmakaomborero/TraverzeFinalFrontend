@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
 import { styles } from "../styles"
-
+import { BsArrowRight } from "react-icons/bs";
 import axios from 'axios'
 
 import { LoadingOutlined } from '@ant-design/icons'
@@ -112,7 +112,11 @@ const EmailForm = props => {
                         placeholder='Your Email'
                         onChange={e => setEmail(e.target.value)}
                         style={styles.emailInput}
+                        
                     />
+                    <button>
+            <BsArrowRight />
+          </button>
                 </form>
                 
                 <div style={styles.bottomText}>

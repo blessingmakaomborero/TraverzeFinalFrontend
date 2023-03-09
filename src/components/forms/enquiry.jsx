@@ -1,154 +1,202 @@
 import React from "react";
-import { Grid, Paper, Button, Typography } from "@material-ui/core";
-import { TextField } from "@material-ui/core";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import MuiPhoneNumber from "material-ui-phone-number";
-import * as Yup from "yup";
-import { useMutation , useQuery} from "@apollo/client";
+import { Grid, Paper, Typography } from "@material-ui/core";
+//import { FormControl, FormLabel, RadioGroup as MuiRadioGroup, FormControlLabel, Radio, Typography } from '@material-ui/core';
+import { useForm, Form } from '../forms/useForm';
+import Controls from '../forms/controls/Controls'
+//import { Formik, Form, Field, ErrorMessage } from "formik";s
+import { useMutation, useQuery } from "@apollo/client";
 import { CREATEENQUIRY } from "../../utils/Mutation";
 import { PACKAGE } from "../../utils/Queries";
 import { useParams } from "react-router-dom";
+import { BACKEND_URL } from "../../customHooks/helper";
 
-
+const initialFValues = {
+  name: "",
+  email: "",
+  surname: "",
+  message: "",
+  phone_number: "",
+  dateoftravel: new Date(),
+};
 
 const RegistrationForm = () => {
   const { id } = useParams();
   const { loading, data, error } = useQuery(PACKAGE, { variables: { id: id } });
-  const paperStyle = { padding: "0 15px 40px 15px", width: 250 };
+  const paperStyle = { padding: "0 1px 40px 1px", width: 300 };
   const btnStyle = { marginTop: 10 };
-  const [Enquiry ,{data1}] = useMutation(CREATEENQUIRY);
- 
-    if (loading) return <h1>loading please wait</h1>;
+  const [Enquiry, { data1 }] = useMutation(CREATEENQUIRY);
+  const validate = (fieldValues = values) => {
+    let temp = { ...errors }
+    if ('firstName' in fieldValues)
+      temp.firstName = fieldValues.firstName ? "" : "This field is required."
+    if ('lastName' in fieldValues)
+      temp.lastName = fieldValues.lastName ? "" : "This field is required."
+    if ('email' in fieldValues)
+      temp.email = (/$^|.+@.+..+/).test(fieldValues.email) ? "" : "Email is not valid."
+    if ('mobile' in fieldValues)
+      temp.mobile = fieldValues.mobile.length > 9 ? "" : "Minimum 10 numbers required."
+    if ('flightclass' in fieldValues)
+      temp.flightclass = fieldValues.flightclass.length != 0 ? "" : "This field is required."
+    setErrors({
+      ...temp
+    })
+    if (fieldValues == values) {
+      Object.keys(values).forEach(key => {
+        if (values[key] === '' || values[key] == null) {
+          delete values[key];
+        }
+      });
+    }
+
+    if (fieldValues == values)
+      return Object.values(temp).every(x => x == "")
+  }
+  const {
+    values,
+    setValues,
+    errors,
+    setErrors,
+    handleInputChange,
+    resetForm
+  } = useForm(initialFValues, true, validate);
+
+  if (loading) return <h1>loading please wait</h1>;
   if (error) console.log(error);
   if (data1) console.log(data1);
   if (data) console.log(data);
   const {
     title,
     cost,
-    
+    includes,
+
   } = data.package.data.attributes;
-  console.log(title);
-  
- 
-  const initialValues = {
-    name: "",
-    email: "",
-    surname: "",
-    message: "",
-    phone_number: "",
-    Packages:"",
-  };
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().min(3, "It's too short").required("Required"),
-    email: Yup.string().email("Enter valid email").required("Required"),
-    // phoneNumber: Yup.number().typeError("Enter valid Phone number").required("Required"),
-  });
-  const Package = {data};
-  console.log(Package);
-  
-  const onSubmit = (fields , props,) => {
-     Enquiry({
-      variables: {
-        name: fields.name,
-        surname: fields.surname,
-        email: fields.email,
-        phone_number: fields.phone_number,
-        message: fields.message,
-        Packages:Package,
-        
-      
-      }
-    })
-   
+
+  const datass = [cost, title, includes];
+  //console.log(datass)
+
+
+
+  const Package = { data };
+  //console.log(Package);
+
+  const Submit = async (fields,) => {
+    let url = `${BACKEND_URL}/api/holiday-packages-enquiry/holiday-packages-enquiry`
+    const rawResponse = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        FirstName: fields.name,
+        LastName: fields.surname,
+        Email: fields.email,
+        Enquired_Package: datass,
+        PhoneNumber: fields.phone_number,
+        Message: fields.message,
+        DateOfTravel: fields.dateoftravel,
+
+        ...Form
+      })
+    });
+    const content = await rawResponse.json();
+    console.log(content)
+
     alert(JSON.stringify(fields), null, 2);
-    props.resetForm();
+    resetForm();
   };
-  
+  const handleSubmit = e => {
+    e.preventDefault()
+    if (validate()){
+        Submit(values)
+        resetForm()
+    }
+}
+
+
+
   return (
-    
-    <Grid>
-    
+
+    <Grid item>
+
       <Paper elevation={0} style={paperStyle}>
-      <Grid align="center">
-          <Typography variant="caption">{title},{cost}</Typography>
+        <Grid align="center">
+          <Typography variant="caption">Visit {title} For Just ${cost}</Typography>
         </Grid>
 
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={onSubmit}
-        >
-          {(props) => (
-            <Form noValidate>
-              {/* <TextField label='Name' name="name" fullWidth value={props.values.name}+uihp[l;koijoijhjyuyu6kygtfv6tszxghju['\454\jhhyyuuihp[l;koijoijhjyuyu6kygtfv6t]]]
-                    onChange={props.handleChange} /> */}
 
-              <Field
-                as={TextField}
-                name="name"
-                label="Name"
-                fullWidth
-                error={props.errors.name && props.touched.name}
-                helperText={<ErrorMessage name="name" />}
-                required
-              />
 
-              <Field
-                as={TextField}
-                name="surname"
-                label="Surname"
-                fullWidth
-                error={props.errors.surname && props.touched.surname}
-                helperText={<ErrorMessage name="surname" />}
-                required
-              />
+        <Form onSubmit={handleSubmit} >
+          <Controls.Input
+            name="name"
+            label="Name"
+            fullWidth
+            value={values.name}
+            onChange={handleInputChange}
+            error={errors.name}
+            required
+          />
 
-              {/* <TextField label='Email' name='email' type='Email' fullWidth 
-                    {...props.getFieldProps('email')}/> */}
 
-              <Field
-                as={TextField}
-                name="email"
-                label="Email"
-                fullWidth
-                error={props.errors.email && props.touched.email}
-                helperText={<ErrorMessage name="email" />}
-                required
-              />
+          <Controls.Input
+            name="surname"
+            label="Surname"
+            fullWidth
+            value={values.surname}
+            onChange={handleInputChange}
+            error={errors.surname}
+            required
+          />
 
-              <MuiPhoneNumber
-                data-cy="phoneNumbers"
-                defaultCountry={"zw"}
-                name="phone_number"
-                label="Phone Numbers"
-                fullWidth
-                required
-              
-                onChange={(value) => props.setFieldValue("phone_number", value)}
-                error={props.touched.phone_number && Boolean(props.errors.phone_number)}
-                helperText={props.touched.phone_number && props.errors.phone_number}
-              />
 
-              <Field
-                as={TextField}
-                label="Message"
-                name="message"
-                fullWidth
-                multiline
-                minRows="5"
-              />
+          <Controls.Input
+            name="email"
+            label="Email"
+            fullWidth
+            value={values.email}
+            onChange={handleInputChange}
+            error={errors.email}
+            required
+          />
 
-              <Button
-                type="submit"
-                style={btnStyle}
-                variant="contained"
-                color="primary"
-              >
-                Enquire
-              </Button>
-            </Form>
-          )}
-        </Formik>
+          <Controls.InputPhonenumber
+            data-cy="phoneNumbers"
+            defaultCountry={"zw"}
+            name="phone_number"
+            label="Phone Numbers"
+            value={values.phone_number}
+            onChange={handleInputChange}
+            error={errors.phone_number}
+            fullWidth
+            required
+
+          />
+          <Controls.DatePickers
+            name="dateoftravel"
+            required
+           
+            value={values.dateoftravel}
+            onChange={handleInputChange}
+          />
+
+          <Controls.Messagebox
+            label="Message"
+            name="message"
+            onChange={handleInputChange}
+            error={errors.message}
+            fullWidth
+            value={values.message}
+            multiline
+            minRows="5"
+          />
+
+          <div>
+            <Controls.Button
+              type="submit"
+              text="Enquire" />
+            <Controls.Button
+              text="Reset"
+              color="default"
+              onClick={resetForm} />
+          </div>
+        </Form>
+
       </Paper>
     </Grid>
   );

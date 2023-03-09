@@ -7,6 +7,8 @@ import { BACKEND_URL } from "../../customHooks/helper";
 import "./rotate.scss";
 import styled from "styled-components";
 import ServiceCard from "./servicescard";
+import {css} from "@emotion/react";
+import {PropagateLoader} from "react-spinners";
 import { useQuery } from "@apollo/client";
 import { SERVICES } from "../../utils/Queries";
 
@@ -20,7 +22,6 @@ const Allservices = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    className: "center",
     centerMode: false,
 
     responsive: [
@@ -28,17 +29,26 @@ const Allservices = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
           infinite: true,
           dots: false,
         },
       },
       {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+      
+      {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
         },
       },
       {
@@ -52,8 +62,13 @@ const Allservices = () => {
   };
 
   const { loading, data, error } = useQuery(SERVICES);
+  const override = css`
+  display:block;
+margin: 0 auto;
+border-color: blue;
+`;
 
-  if (loading) return <h1>loading please wait</h1>;
+  if (loading) return <PropagateLoader color='#007bff' Loading={loading} css={override} size={20}/>;
   if (error) console.log(error);
   if (data) console.log(data);
 
@@ -61,10 +76,10 @@ const Allservices = () => {
     <Div className="service">
       <Section id="services">
         <Slider  {...settings}>
-          {data.services.data.map((service) => {
+          {data.services.data.map((service,index)=> {
             return (
               <ServiceCard
-                key={service.id}
+                key={index}
                 item={service}
                 service={{
                   title: `${service.attributes.title}`,
@@ -77,14 +92,15 @@ const Allservices = () => {
           })}
         </Slider>
       </Section>
+      
     </Div>
   );
 };
 export default Allservices;
 
 const Section = styled.section`
-  padding: 5rem 0;
-  display: grid;
+  padding: 2rem 0;
+  
   grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
   gap: 1rem;
   margin-borders: solid;
@@ -108,7 +124,7 @@ const Section = styled.section`
     }
     .icon {
       justify-content: fixed;
-      border-bottom: 3px solid #11bb9a;
+      border-bottom: 3px solid #1770b0;
       img {
         height: 3.4rem;
         justify-content: relative;

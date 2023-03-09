@@ -16,8 +16,8 @@ const Section4 = () => {
         </div>
         <div className={styles.info}>
           <p>
-            Search and find your dream house at affordable prices, but with the
-            best quality. Only available in Real!
+            Search and Travel to your dream places, let us tailor make your vaccation trips at affordable prices, but with the
+            best quality. Only available at Traverze Travel
           </p>
 
           <div className={styles.rows}>
@@ -25,13 +25,13 @@ const Section4 = () => {
             <div className={styles.row_1}>
               {/* FACT1 */}
               <div className={styles.fact}>
-                <h2>10.234</h2>
+                <h2>10234</h2>
                 <h3>Best Travel Places</h3>
               </div>
 
               {/* FACT2 */}
               <div className={styles.fact}>
-                <h2>11.234</h2>
+                <h2>11234</h2>
                 <h3>Holiday Trips </h3>
               </div>
             </div>
@@ -40,13 +40,13 @@ const Section4 = () => {
             <div className={styles.row_1}>
               {/* FACT1 */}
               <div className={styles.fact}>
-                <h2>2.157</h2>
+                <h2>2157</h2>
                 <h3>Cruises</h3>
               </div>
 
               {/* FACT2 */}
               <div className={styles.fact}>
-                <h2>12.157</h2>
+                <h2>12257</h2>
                 <h3>Happy Clients</h3>
               </div>
             </div>

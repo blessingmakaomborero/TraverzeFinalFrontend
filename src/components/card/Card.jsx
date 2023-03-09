@@ -3,7 +3,6 @@ import { IoMdAirplane } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaHotel } from "react-icons/fa";
 import building3 from "../../assets/building3.jpg";
-import styled from "styled-components";
 import styles from "./Card.module.scss";
 
 import { Link } from "react-router-dom";
@@ -26,7 +25,7 @@ const Card = ({ info, showInfo, secondClass }) => {
     <div className={`${styles.card_container} ${secondClass}`}>
       <div className={styles.image_container}>
         <div className={styles.image_buy_btn}>
-          <Link to="/">{`${info.title}`}</Link>
+          <Link to={`/hotels/${info.id}`}>{`${info.title}`}</Link>
         </div>
         <img src={info.imageSource} alt="building" />
       </div>
@@ -34,7 +33,7 @@ const Card = ({ info, showInfo, secondClass }) => {
       <h3>{info.PeopleSharing}</h3>
       <h4>
         <p className={styles.neighbourhood}>{`${info.City},`}</p>
-        <p className={styles.street}>{` ${info.Category},`}</p>
+        <p className={styles.street}>{` ${info.Category}`}</p>
       </h4>
       <div className={styles.info}>
         <div className={styles.row_1}>
@@ -123,93 +122,3 @@ Card.defaultProps = {
 };
 
 export default Card;
-
-
-const Section = styled.section`
-  padding: 2rem 0;
-  .title {
-    text-align: center;
-
-  }
-  .packages {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-    cursor: pointer;
-    ul {
-      display: flex;
-      list-style-type: none;
-      width: max-content;
-      li {
-        padding: 1rem 2rem;
-        border-bottom: 0.1rem solid black;
-      }
-      .active {
-        border-bottom: 0.5rem solid #8338ec;
-      }
-    }
-  }
-  .destinations {
-    display: flex;
-    white-space: nowrap;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    padding: 0 3rem;
-    .destination {
-      padding: 1rem;
-      display: inline-block;
-      white-space: nowrap;
-      flex-direction: column;
-      gap: 0.5rem;
-      background-color: #8338ec14;
-      border-radius: 1rem;
-      transition: 0.3s ease-in-out;
-      &:hover {
-        transform: translateX(0.4rem) translateY(-1rem);
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      }
-      img {
-        width: 100%;
-      }
-      .info {
-        display: flex;
-        align-items: center;
-        .services {
-          display: flex;
-          gap: 0.3rem;
-          img {
-            border-radius: 1rem;
-            background-color: #4d2ddb84;
-            width: 2rem;
-            /* padding: 1rem; */
-            padding: 0.3rem 0.4rem;
-          }
-        }
-        display: flex;
-        justify-content: space-between;
-      }
-      .distance {
-        display: flex;
-        justify-content: space-between;
-      }
-    }
-  }
-  @media screen and (min-width: 280px) and (max-width: 768px) {
-    .packages {
-      ul {
-        li {
-          padding: 0 0.5rem;
-          font-size: 2vh;
-          padding-bottom: 1rem;
-        }
-        .active {
-          border-bottom-width: 0.3rem;
-        }
-      }
-    }
-    .destinations {
-      grid-template-columns: 1fr;
-      padding: 0;
-    }
-  }
-`;

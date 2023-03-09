@@ -1,0 +1,149 @@
+.contactss{
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  
+}
+.contactss-heading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4rem;
+  padding-right: 2rem;
+}
+.contactss-heading h2{
+  color: #1770b0;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: relative;
+  font-family: "bai jamjuree",sans-serif;
+
+
+}
+.contactss-heading h2::before{
+  position: absolute;
+  top: 50%;
+  right: -80px;
+  content: "";
+  width: 70px;
+  height: 2px;
+  background: #1770b0;
+}
+.contactss-heading h2::after{
+  position: absolute;
+  top: 50%;
+  right: -80px;
+  content: "";
+  width: 70px;
+  height: 2px;
+  background: #1770b0;
+}
+.containerss{
+  max-width: 1170px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: auto;
+}
+.row1{
+  display: flex;
+  flex-wrap: wrap;
+
+}
+.columnss{
+  flex: 0 0 auto;
+  width: 50%;
+}
+.contactss-widget{
+  margin-bottom: 40px;
+  padding-right: 10px;
+}
+.contactss-widget-item{
+  overflow:hidden;
+  margin-bottom: 40px;
+}
+.iconssss{
+  height: 60px;
+  width: 60px;
+  background: #1770b0;
+  border-radius: 50%;
+  line-height: 60px;
+  text-align: center;
+  margin-right: 30px;
+  float: left;
+}
+.iconssss i{
+  font-size: 24px;
+  columnsss: #fff;
+  position: relative;
+  top: 3px;
+}
+.text{
+  overflow: hidden;
+}
+.text h5{
+  color: #111;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.text p{
+  font-size: 16px;
+  font-family: "Bai Jamjuree",sans-serif;
+  color: #111;
+  font-weight: 400;
+  line-height: 28px;
+  margin: 0 0 15px 0;
+}
+.contactss-form{
+  text-align: center;
+  margin-bottom: 40px;
+}
+form{
+  display: block;
+  margin-top: 0em;
+}
+.map-columnss{
+  flex:0 0 auto;
+  width: 100%;
+}
+.contactss-map iframe{
+  width: 100%;
+}
+@media screen and (max-width:1200px) {
+  .containerss{
+      max-width: 960px;
+  }
+  
+}
+@media screen and (max-width:990px) {
+  .containerss{
+      max-width: 720px;
+  }
+  
+}
+@media screen and (max-width:768px) {
+  .containerss{
+      max-width: 540px;
+  }
+  .columnss{
+      width: 100%;
+  }
+  
+}
+@media (max-width:500px) {
+  .contactss-heading{
+      padding-right: 0;
+      }
+  .contactss-heading h2{
+      font-size: 22px;
+
+  }
+  .contactss-heading h2::before{
+      right: -60px;
+      width: 50px;
+  }
+  .contactss-heading h2::after{
+      left: -60px;
+      width: 50px;
+  }
+  
+}

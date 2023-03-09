@@ -68,7 +68,7 @@ const Section_3 = () => {
   return (
     <section className={styles.section_3}>
       <div className={styles.section_3_title}>
-        <h1>Recommanded Travel places</h1>
+        <h1 className="Recommandedtrips">Recommanded Holiday Trips</h1>
         <ArrowButton text="See More" path="Holiday_packages" />
       </div>
 

@@ -7,9 +7,9 @@ a {
 .navbar_container {
     position: relative;
     z-index: 999;
-    padding-block: 1.5rem;
+    padding-block: 0.2rem;
     @media screen and (max-width: 600px) {
-        padding-block: 1rem;
+        padding-block: 0.1rem;
     }
 }
 
@@ -87,6 +87,7 @@ nav {
 
 .navlink a {
     color: black;
+    font-size: 120%;
     transition: color 200ms ease;
     @media screen and (max-width: 600px) {
         color: whitesmoke;

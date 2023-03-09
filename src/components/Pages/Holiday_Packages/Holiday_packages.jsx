@@ -1,21 +1,13 @@
-import {
-  faBed,
-  faCalendarDays,
-  faPerson,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
-import { DateRange } from "react-date-range";
 import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
-import Navbar from "../../navbar/Navbar";
+import Navbar from "../../navbar/Navbar copy";
 import HeadTitle from "../../navbar/HeadTitle/HeadTitle";
-import styles from "./Holiday_packages.module.scss";
-
 import React from "react";
+import Footer from "../Home/Sections/Footer";
+import { navlinks } from "../../../data/travigodata";
+import Year from "../Home/Sections/year";
 import styled from "styled-components";
 import Allpackages from "./packages/allpackages";
 import Weekendbreaks from "./packages/weekendbreak";
@@ -23,7 +15,7 @@ import Grouptours from "./packages/grouptours";
 import Longterms from "./packages/longterm";
 import Holidays from "./packages/holidaypackage";
 
-const Holiday_Packages = ({type}) => {
+const Holiday_Packages = () => {
 
 
   const [myProfession, setMyProfession] = useState("All Packages");
@@ -37,22 +29,10 @@ const Holiday_Packages = ({type}) => {
   ];
   return (
     <main>
-      <Navbar />
-      <HeadTitle />
+      <Navbar navlinks={navlinks} />
+    <HeadTitle />
     
-      <div className={styles.content}>
-    
-        <div className="header" >
-
-     
-        {type !== "list" && (
-          <>
-            
-           
-          </>
-        )}
-      </div>
-    </div>
+   
   
     <Section id="recommend">
       
@@ -91,7 +71,8 @@ const Holiday_Packages = ({type}) => {
                             <Longterms />
                         )}
       
-      
+      <Footer />
+      <Year />
         
     </main>
     
